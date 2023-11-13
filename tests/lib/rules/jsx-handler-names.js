@@ -369,5 +369,23 @@ ruleTester.run('jsx-handler-names', rule, {
         },
       ],
     },
+    {
+      code: '<TestComponent handleChange={handleChange} />',
+      errors: [
+        {
+          messageId: 'badPropKey',
+          options: [{ checkInlineVariable: true }],
+        },
+      ],
+    },
+    {
+      code: '<TestComponent handleChange={() => props.handleChange} />',
+      errors: [
+        {
+          messageId: 'badPropKey',
+          options: [{ checkInlineFunction: true }],
+        },
+      ],
+    },
   ]),
 });
